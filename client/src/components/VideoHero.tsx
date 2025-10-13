@@ -20,7 +20,7 @@ export default function VideoHero() {
           className="absolute inset-0 w-full h-full object-cover"
           poster={heroImage}
         >
-          <source src="https://cdn.pixabay.com/video/2021/04/16/71612-543486644_large.mp4" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2019/10/14/27616-366607994_large.mp4" type="video/mp4" />
         </video>
       </div>
       
