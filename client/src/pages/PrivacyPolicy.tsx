@@ -94,24 +94,12 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">4. Information Sharing and Disclosure</h2>
             <p>We do not sell, trade, or rent your personal information to third parties. We may share your information in the following circumstances:</p>
-            <div className="space-y-3 mt-4">
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Service Providers</h4>
-                <p className="pl-4">With trusted third-party vendors who assist us in operating our website and conducting our business</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Legal Requirements</h4>
-                <p className="pl-4">When required by law or to respond to legal process</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Business Transfers</h4>
-                <p className="pl-4">In connection with a merger, acquisition, or sale of assets</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Consent</h4>
-                <p className="pl-4">With your explicit consent for any other purpose</p>
-              </div>
-            </div>
+            <ul className="list-disc pl-6 space-y-2 mt-4">
+              <li><span className="font-bold text-foreground">Service Providers:</span> With trusted third-party vendors who assist us in operating our website and conducting our business</li>
+              <li><span className="font-bold text-foreground">Legal Requirements:</span> When required by law or to respond to legal process</li>
+              <li><span className="font-bold text-foreground">Business Transfers:</span> In connection with a merger, acquisition, or sale of assets</li>
+              <li><span className="font-bold text-foreground">Consent:</span> With your explicit consent for any other purpose</li>
+            </ul>
           </section>
 
           <section>
@@ -135,28 +123,13 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">7. Your Rights and Choices</h2>
             <p>You have the following rights regarding your personal information:</p>
-            <div className="space-y-3 mt-4">
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Access</h4>
-                <p className="pl-4">Request access to your personal information</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Correction</h4>
-                <p className="pl-4">Request correction of inaccurate information</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Deletion</h4>
-                <p className="pl-4">Request deletion of your information</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Portability</h4>
-                <p className="pl-4">Request transfer of your information</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-primary mb-1">Opt-out</h4>
-                <p className="pl-4">Opt-out of marketing communications</p>
-              </div>
-            </div>
+            <ul className="list-disc pl-6 space-y-2 mt-4">
+              <li><span className="font-bold text-foreground">Access:</span> Request access to your personal information</li>
+              <li><span className="font-bold text-foreground">Correction:</span> Request correction of inaccurate information</li>
+              <li><span className="font-bold text-foreground">Deletion:</span> Request deletion of your information</li>
+              <li><span className="font-bold text-foreground">Portability:</span> Request transfer of your information</li>
+              <li><span className="font-bold text-foreground">Opt-out:</span> Opt-out of marketing communications</li>
+            </ul>
             <p className="mt-4">
               To exercise these rights, please contact us at support@karnconsulting.co
             </p>
