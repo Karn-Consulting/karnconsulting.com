@@ -13,7 +13,6 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <VideoHero />
-      <FounderSection />
       <AboutSection />
       <ServicesSection />
       <ScrollingProjects />
@@ -21,6 +20,7 @@ export default function Home() {
       <TechnologyStack />
       <ImageGallery />
       <ContactSection />
+      <FounderSection />
       <Footer />
     </div>
   );
