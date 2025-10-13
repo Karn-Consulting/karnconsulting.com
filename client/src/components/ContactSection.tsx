@@ -28,7 +28,7 @@ export default function ContactSection() {
             Let's <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">Build the Future</span> Together
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
-            Ready to transform your business with AI? Get in touch with our team of experts
+            Ready to transform your business with Self-Governing Intelligent Solutions? Get in touch with our AI/ML experts
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export default function ContactSection() {
             </div>
             <div>
               <h3 className="font-semibold mb-2" data-testid="text-email-title">Email Us</h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-email-value">contact@karnconsulting.ai</p>
+              <p className="text-sm text-muted-foreground" data-testid="text-email-value">support@karnconsulting.co</p>
             </div>
           </Card>
 
@@ -49,7 +49,7 @@ export default function ContactSection() {
             </div>
             <div>
               <h3 className="font-semibold mb-2" data-testid="text-phone-title">Call Us</h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-phone-value">+1 (555) 123-4567</p>
+              <p className="text-sm text-muted-foreground" data-testid="text-phone-value">+91-7576956682</p>
             </div>
           </Card>
 
@@ -59,7 +59,7 @@ export default function ContactSection() {
             </div>
             <div>
               <h3 className="font-semibold mb-2" data-testid="text-location-title">Visit Us</h3>
-              <p className="text-sm text-muted-foreground" data-testid="text-location-value">San Francisco, CA</p>
+              <p className="text-sm text-muted-foreground" data-testid="text-location-value">India</p>
             </div>
           </Card>
         </div>
