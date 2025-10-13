@@ -42,18 +42,19 @@ export default function VideoHero() {
       {/* Navigation Header */}
       <div className="absolute top-0 left-0 right-0 z-30 p-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-chart-2/20 blur-xl scale-150" />
-            <img 
-              src={logoImage} 
-              alt="Karn Consulting" 
-              className="relative h-16 md:h-20 w-auto object-contain drop-shadow-2xl"
-              style={{ 
-                filter: "brightness(1.2) contrast(1.1)",
-                mixBlendMode: "screen"
-              }}
-              data-testid="img-logo" 
-            />
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-primary/30 to-chart-2/30 blur-lg opacity-75 group-hover:opacity-100 transition-opacity" />
+            <div className="relative bg-background/20 backdrop-blur-md rounded-lg px-4 py-2 border border-primary/10">
+              <img 
+                src={logoImage} 
+                alt="Karn Consulting" 
+                className="h-14 md:h-16 w-auto object-contain"
+                style={{ 
+                  filter: "brightness(1.3) contrast(1.2) drop-shadow(0 0 20px rgba(79, 172, 254, 0.5))"
+                }}
+                data-testid="img-logo" 
+              />
+            </div>
           </div>
           <nav className="hidden md:flex items-center gap-8">
             <a href="#services" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors" data-testid="nav-services">Services</a>
