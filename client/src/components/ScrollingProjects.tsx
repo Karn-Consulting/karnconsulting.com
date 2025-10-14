@@ -100,7 +100,7 @@ export default function ScrollingProjects() {
   const [, setLocation] = useLocation();
 
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden" id="projects" data-testid="section-projects">
+    <section className="py-20 md:py-32 relative overflow-hidden" id="case-studies" data-testid="section-projects">
       <div className="absolute inset-0 bg-gradient-to-b from-card/30 via-background to-card/30" />
       
       <div className="relative z-10">
