@@ -74,14 +74,14 @@ export default function Footer() {
               </div>
               <div className="pt-2">
                 <a 
-                  href="https://www.linkedin.com/in/prateekkarn" 
+                  href="https://www.linkedin.com/company/karnconsulting" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/20 hover-elevate active-elevate-2 transition-colors"
                   data-testid="link-linkedin"
                 >
                   <Linkedin className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-medium text-primary">Connect on LinkedIn</span>
+                  <span className="text-sm font-medium text-primary">Follow on LinkedIn</span>
                 </a>
               </div>
             </div>

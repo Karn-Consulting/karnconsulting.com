@@ -26,7 +26,7 @@ export default function AboutSection() {
 
   const counters = [counter1, counter2, counter3, counter4];
   return (
-    <section className="py-20 md:py-32 relative" id="about" data-testid="section-about">
+    <section className="py-16 md:py-24 relative" id="about" data-testid="section-about">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -102,8 +102,10 @@ export default function AboutSection() {
         </div>
 
         {/* Core Values */}
-        <div className="space-y-8">
-          <h3 className="text-2xl font-bold text-center mb-8" data-testid="text-values-title">Our Core Values</h3>
+        <div className="mt-12 space-y-6">
+          <h3 className="text-4xl md:text-5xl font-bold text-center" data-testid="text-values-title">
+            Our <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">Core Values</span>
+          </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, index) => {
               const Icon = value.icon;
