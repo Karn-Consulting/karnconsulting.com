@@ -1,15 +1,13 @@
-import { SiTensorflow, SiPytorch, SiPython, SiAmazon, SiKubernetes, SiDocker, SiOpenai, SiGooglemarketingplatform, SiHubspot } from "react-icons/si";
-import { Cloud, Bot, BarChart3 } from "lucide-react";
+import { SiTensorflow, SiPytorch, SiAmazon, SiKubernetes, SiDocker } from "react-icons/si";
+import { Bot, BarChart3, Brain } from "lucide-react";
 
 const technologies = [
   { icon: SiTensorflow, name: "TensorFlow", color: "text-orange-500" },
   { icon: SiPytorch, name: "PyTorch", color: "text-red-500" },
-  { icon: SiPython, name: "Python", color: "text-blue-400" },
-  { icon: SiOpenai, name: "OpenAI", color: "text-emerald-500" },
+  { icon: Brain, name: "Machine Learning", color: "text-green-500" },
   { icon: Bot, name: "Agentic AI", color: "text-purple-500" },
   { icon: BarChart3, name: "MarTech", color: "text-pink-500" },
   { icon: SiAmazon, name: "AWS", color: "text-orange-400" },
-  { icon: Cloud, name: "Azure", color: "text-blue-500" },
   { icon: SiKubernetes, name: "Kubernetes", color: "text-blue-600" },
   { icon: SiDocker, name: "Docker", color: "text-blue-400" },
 ];

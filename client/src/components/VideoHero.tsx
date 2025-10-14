@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import logoImage from "@assets/image_1760332792562.png";
 import heroImage from "@assets/stock_images/abstract_ai_neural_n_80bec60a.jpg";
 import { useState } from "react";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 
 export default function VideoHero() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -86,20 +87,10 @@ export default function VideoHero() {
               size="lg" 
               className="group"
               data-testid="button-get-started"
-              onClick={() => console.log('Get Started clicked')}
+              onClick={() => setIsDialogOpen(true)}
             >
               Get Started
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              className="backdrop-blur-sm bg-background/10 border-foreground/20 hover:bg-background/20"
-              data-testid="button-watch-demo"
-              onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-            >
-              <Play className="mr-2 w-4 h-4" />
-              Watch Demo
             </Button>
           </div>
         </div>
@@ -111,6 +102,9 @@ export default function VideoHero() {
           <div className="w-1 h-3 bg-primary/60 rounded-full animate-pulse" />
         </div>
       </div>
+
+      {/* Lead Form Dialog */}
+      <LeadFormDialog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
     </section>
   );
 }
