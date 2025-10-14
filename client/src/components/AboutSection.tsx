@@ -102,8 +102,8 @@ export default function AboutSection() {
         </div>
 
         {/* Core Values */}
-        <div className="mt-12 space-y-6">
-          <h3 className="text-4xl md:text-5xl font-bold text-center" data-testid="text-values-title">
+        <div className="mt-12">
+          <h3 className="text-4xl md:text-5xl font-bold text-center mb-16" data-testid="text-values-title">
             Our <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">Core Values</span>
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
