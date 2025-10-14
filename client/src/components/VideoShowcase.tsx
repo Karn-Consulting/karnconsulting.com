@@ -1,41 +1,30 @@
 import { Card } from "@/components/ui/card";
-import { Play, Pause } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useState } from "react";
-import aiRobotImage from "@assets/stock_images/artificial_intellige_2f43adbb.jpg";
-import mlProcessImage from "@assets/stock_images/artificial_intellige_e23877b5.jpg";
-import dataVizImage from "@assets/stock_images/futuristic_data_visu_aa309bed.jpg";
 
-const videos = [
+const gifs = [
   {
-    title: "AI in Action",
-    description: "See how our AI models process and analyze complex data in real-time",
-    thumbnail: aiRobotImage,
-    videoUrl: "https://cdn.pixabay.com/video/2022/03/13/110635-689423131_large.mp4",
-    duration: "2:45",
+    title: "Neural Network Processing",
+    description: "Watch AI neural networks analyze and process complex data patterns in real-time",
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWo0ZTZlbGx5NGJ0OGFhcmtmbnFpNm1vNGhqb3Y2Z3Fwd2JhNXFuZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o6Zt6ML6BklcajjsA/giphy.gif",
+    category: "Machine Learning",
   },
   {
-    title: "Self-Governing Systems",
-    description: "Discover autonomous systems that adapt and optimize without human intervention",
-    thumbnail: mlProcessImage,
-    videoUrl: "https://cdn.pixabay.com/video/2020/04/19/36579-410211485_large.mp4",
-    duration: "3:12",
+    title: "Data Analytics Engine",
+    description: "Advanced algorithms transforming raw data into actionable business intelligence",
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzZ4NmNiZmdieHd2enp3cG1ma3l0MjhxbzRoOGVqZnBraTN2Z2Y0NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41lFw057lAJQMwg0/giphy.gif",
+    category: "Analytics",
   },
   {
-    title: "Data Visualization",
-    description: "Transform complex data into actionable insights with our visualization tools",
-    thumbnail: dataVizImage,
-    videoUrl: "https://cdn.pixabay.com/video/2021/10/17/92041-635137526_large.mp4",
-    duration: "1:58",
+    title: "AI Model Training",
+    description: "Deep learning models continuously improving through automated training cycles",
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExajNwMXJ1YnJ5YWs4ejUxdGJzaXdxeGhhOWI2dmNvd2x3b3kwenVocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9C25UNTwfZuk85WP/giphy-downsized-large.gif",
+    category: "Deep Learning",
   },
 ];
 
 export default function VideoShowcase() {
-  const [playingIndex, setPlayingIndex] = useState<number | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const togglePlay = (index: number) => {
-    setPlayingIndex(playingIndex === index ? null : index);
-  };
 
   return (
     <section className="py-20 md:py-32 px-8 relative bg-card/30" data-testid="section-video-showcase">
@@ -45,12 +34,12 @@ export default function VideoShowcase() {
             Experience <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">Innovation</span> in Motion
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-video-description">
-            Watch our AI solutions transform data into intelligent action
+            High-performance AI demonstrations showcasing intelligent solutions
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {videos.map((video, index) => (
+          {gifs.map((gif, index) => (
             <Card
               key={index}
               className="overflow-hidden border-primary/10 hover-elevate active-elevate-2 transition-all cursor-pointer group animate-scale-in"
@@ -59,54 +48,35 @@ export default function VideoShowcase() {
               onMouseLeave={() => setHoveredIndex(null)}
               data-testid={`video-card-${index}`}
             >
-              <div className="relative aspect-video overflow-hidden">
-                {playingIndex === index ? (
-                  <video
-                    className="w-full h-full object-cover"
-                    src={video.videoUrl}
-                    autoPlay
-                    controls
-                    data-testid={`video-player-${index}`}
-                  />
-                ) : (
-                  <>
-                    <img 
-                      src={video.thumbnail} 
-                      alt={video.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      data-testid={`video-thumbnail-${index}`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                    
-                    {/* Play Button Overlay */}
-                    <div 
-                      className="absolute inset-0 flex items-center justify-center"
-                      onClick={() => togglePlay(index)}
-                      data-testid={`play-button-${index}`}
-                    >
-                      <div className="w-16 h-16 rounded-full bg-primary/90 backdrop-blur-sm flex items-center justify-center transform transition-transform hover:scale-110">
-                        {playingIndex === index ? (
-                          <Pause className="w-6 h-6 text-primary-foreground ml-0.5" />
-                        ) : (
-                          <Play className="w-6 h-6 text-primary-foreground ml-1" />
-                        )}
-                      </div>
-                    </div>
+              <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary/5 to-chart-2/5">
+                <img 
+                  src={gif.gifUrl} 
+                  alt={gif.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                  data-testid={`video-thumbnail-${index}`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Sparkle Icon Overlay on Hover */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md flex items-center justify-center border border-primary/30">
+                    <Sparkles className="w-8 h-8 text-primary animate-pulse" />
+                  </div>
+                </div>
 
-                    {/* Duration Badge */}
-                    <div className="absolute top-4 right-4 px-2 py-1 rounded bg-background/80 backdrop-blur-sm text-xs font-medium">
-                      {video.duration}
-                    </div>
-                  </>
-                )}
+                {/* Category Badge */}
+                <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary/20 backdrop-blur-md text-xs font-medium text-primary border border-primary/30">
+                  {gif.category}
+                </div>
               </div>
 
               <div className="p-6 space-y-3">
                 <h3 className="text-xl font-semibold" data-testid={`video-title-${index}`}>
-                  {video.title}
+                  {gif.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed" data-testid={`video-description-${index}`}>
-                  {video.description}
+                  {gif.description}
                 </p>
               </div>
             </Card>
