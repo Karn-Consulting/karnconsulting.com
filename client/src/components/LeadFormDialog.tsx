@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import PhoneInput from "react-phone-number-input";
+import { ThankYouDialog } from "./ThankYouDialog";
 
 interface LeadFormDialogProps {
   open: boolean;
@@ -20,6 +21,8 @@ interface LeadFormDialogProps {
 export function LeadFormDialog({ open, onOpenChange }: LeadFormDialogProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [submittedData, setSubmittedData] = useState({ name: "", email: "" });
   const [formData, setFormData] = useState({
     name: "",
     companyName: "",
@@ -93,12 +96,13 @@ export function LeadFormDialog({ open, onOpenChange }: LeadFormDialogProps) {
       const result = await response.json();
       
       if (response.ok) {
-        toast({
-          title: "Thank you for your interest!",
-          description: "Our team will contact you within 24 hours.",
+        // Store submitted data for thank you dialog
+        setSubmittedData({
+          name: formData.name,
+          email: formData.email
         });
         
-        // Reset form and close dialog
+        // Reset form
         setFormData({
           name: "",
           companyName: "",
@@ -106,7 +110,10 @@ export function LeadFormDialog({ open, onOpenChange }: LeadFormDialogProps) {
           phone: "",
         });
         setErrors({});
+        
+        // Close lead form and show thank you dialog
         onOpenChange(false);
+        setShowThankYou(true);
       } else {
         toast({
           title: "Error",
@@ -127,116 +134,125 @@ export function LeadFormDialog({ open, onOpenChange }: LeadFormDialogProps) {
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md" data-testid="dialog-lead-form">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-bold">
-            Transform Your Business with AI
-          </DialogTitle>
-          <DialogDescription>
-            Connect with our Intelligence Experts today
-          </DialogDescription>
-        </DialogHeader>
-        
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Full Name *</Label>
-            <Input
-              id="name"
-              placeholder="John Doe"
-              value={formData.name}
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-                setErrors({ ...errors, name: "" });
-              }}
-              className={errors.name ? "border-destructive" : ""}
-              data-testid="input-lead-name"
-            />
-            {errors.name && (
-              <p className="text-sm text-destructive" data-testid="error-name">
-                {errors.name}
-              </p>
-            )}
-          </div>
+    <>
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="sm:max-w-md" data-testid="dialog-lead-form">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold">
+              Transform Your Business with AI
+            </DialogTitle>
+            <DialogDescription>
+              Connect with our Intelligence Experts today
+            </DialogDescription>
+          </DialogHeader>
           
-          <div className="space-y-2">
-            <Label htmlFor="companyName">Company Name *</Label>
-            <Input
-              id="companyName"
-              placeholder="Acme Corporation"
-              value={formData.companyName}
-              onChange={(e) => {
-                setFormData({ ...formData, companyName: e.target.value });
-                setErrors({ ...errors, companyName: "" });
-              }}
-              className={errors.companyName ? "border-destructive" : ""}
-              data-testid="input-lead-company"
-            />
-            {errors.companyName && (
-              <p className="text-sm text-destructive" data-testid="error-company">
-                {errors.companyName}
-              </p>
-            )}
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="email">Company Email *</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="john@company.com"
-              value={formData.email}
-              onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
-                setErrors({ ...errors, email: "" });
-              }}
-              className={errors.email ? "border-destructive" : ""}
-              data-testid="input-lead-email"
-            />
-            {errors.email && (
-              <p className="text-sm text-destructive" data-testid="error-email">
-                {errors.email}
-              </p>
-            )}
-            <p className="text-xs text-muted-foreground">
-              Please use your company email address
-            </p>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number *</Label>
-            <div className={`phone-input-wrapper ${errors.phone ? "error" : ""}`}>
-              <PhoneInput
-                id="phone"
-                placeholder="Enter phone number"
-                value={formData.phone}
-                onChange={(value) => {
-                  setFormData({ ...formData, phone: value || "" });
-                  setErrors({ ...errors, phone: "" });
+          <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name *</Label>
+              <Input
+                id="name"
+                placeholder="John Doe"
+                value={formData.name}
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                  setErrors({ ...errors, name: "" });
                 }}
-                defaultCountry="IN"
-                international
-                countryCallingCodeEditable={false}
-                data-testid="input-lead-phone"
+                className={errors.name ? "border-destructive" : ""}
+                data-testid="input-lead-name"
               />
+              {errors.name && (
+                <p className="text-sm text-destructive" data-testid="error-name">
+                  {errors.name}
+                </p>
+              )}
             </div>
-            {errors.phone && (
-              <p className="text-sm text-destructive" data-testid="error-phone">
-                {errors.phone}
+            
+            <div className="space-y-2">
+              <Label htmlFor="companyName">Company Name *</Label>
+              <Input
+                id="companyName"
+                placeholder="Acme Corporation"
+                value={formData.companyName}
+                onChange={(e) => {
+                  setFormData({ ...formData, companyName: e.target.value });
+                  setErrors({ ...errors, companyName: "" });
+                }}
+                className={errors.companyName ? "border-destructive" : ""}
+                data-testid="input-lead-company"
+              />
+              {errors.companyName && (
+                <p className="text-sm text-destructive" data-testid="error-company">
+                  {errors.companyName}
+                </p>
+              )}
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="email">Company Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="john@company.com"
+                value={formData.email}
+                onChange={(e) => {
+                  setFormData({ ...formData, email: e.target.value });
+                  setErrors({ ...errors, email: "" });
+                }}
+                className={errors.email ? "border-destructive" : ""}
+                data-testid="input-lead-email"
+              />
+              {errors.email && (
+                <p className="text-sm text-destructive" data-testid="error-email">
+                  {errors.email}
+                </p>
+              )}
+              <p className="text-xs text-muted-foreground">
+                Please use your company email address
               </p>
-            )}
-          </div>
-          
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={isSubmitting}
-            data-testid="button-lead-submit"
-          >
-            {isSubmitting ? "Submitting..." : "Get Started"}
-          </Button>
-        </form>
-      </DialogContent>
-    </Dialog>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number *</Label>
+              <div className={`phone-input-wrapper ${errors.phone ? "error" : ""}`}>
+                <PhoneInput
+                  id="phone"
+                  placeholder="Enter phone number"
+                  value={formData.phone}
+                  onChange={(value) => {
+                    setFormData({ ...formData, phone: value || "" });
+                    setErrors({ ...errors, phone: "" });
+                  }}
+                  defaultCountry="IN"
+                  international
+                  countryCallingCodeEditable={false}
+                  data-testid="input-lead-phone"
+                />
+              </div>
+              {errors.phone && (
+                <p className="text-sm text-destructive" data-testid="error-phone">
+                  {errors.phone}
+                </p>
+              )}
+            </div>
+            
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={isSubmitting}
+              data-testid="button-lead-submit"
+            >
+              {isSubmitting ? "Submitting..." : "Get Started"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+      
+      <ThankYouDialog
+        open={showThankYou}
+        onOpenChange={setShowThankYou}
+        leadName={submittedData.name}
+        leadEmail={submittedData.email}
+      />
+    </>
   );
 }
