@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useRoute } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, Download, Calendar, Users, Target, TrendingUp, Award, CheckCircle } from "lucide-react";
+import { ArrowLeft, Mail, Calendar, Users, Target, TrendingUp, Award, CheckCircle } from "lucide-react";
 import { useLocation } from "wouter";
 import { useCounter } from "@/hooks/use-counter";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg";
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
 import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.jpg";
@@ -192,6 +194,7 @@ const projectsData: Record<string, {
 export default function ProjectDetail() {
   const [match, params] = useRoute("/project/:id");
   const [, setLocation] = useLocation();
+  const [showLeadForm, setShowLeadForm] = useState(false);
   
   if (!match || !params?.id || !projectsData[params.id]) {
     setLocation("/");
@@ -201,6 +204,7 @@ export default function ProjectDetail() {
   const project = projectsData[params.id];
 
   return (
+    <>
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-[400px] overflow-hidden">
@@ -321,9 +325,13 @@ export default function ProjectDetail() {
                   </div>
                 </div>
 
-                <Button className="w-full mt-6" data-testid="button-download">
-                  <Download className="mr-2 w-4 h-4" />
-                  Download Case Study
+                <Button 
+                  className="w-full mt-6" 
+                  data-testid="button-case-study"
+                  onClick={() => setShowLeadForm(true)}
+                >
+                  <Mail className="mr-2 w-4 h-4" />
+                  Send me full case study
                 </Button>
               </Card>
             </div>
@@ -331,5 +339,11 @@ export default function ProjectDetail() {
         </div>
       </section>
     </div>
+    
+    <LeadFormDialog 
+      open={showLeadForm}
+      onOpenChange={setShowLeadForm}
+    />
+    </>
   );
 }

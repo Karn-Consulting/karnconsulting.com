@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp, Mail } from "lucide-react";
+import { LeadFormDialog } from "./LeadFormDialog";
 import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg";
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
 import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.jpg";
@@ -36,7 +38,10 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
+  const [showLeadForm, setShowLeadForm] = useState(false);
+  
   return (
+    <>
     <section className="py-20 md:py-32 px-8" id="case-studies" data-testid="section-case-studies">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 space-y-4 animate-fade-up">
@@ -52,9 +57,8 @@ export default function CaseStudies() {
           {caseStudies.map((study, index) => (
             <Card
               key={index}
-              className="overflow-hidden border-primary/10 hover-elevate active-elevate-2 transition-all cursor-pointer group animate-scale-in"
+              className="overflow-hidden border-primary/10 hover-elevate active-elevate-2 transition-all group animate-scale-in"
               style={{ animationDelay: `${index * 0.15}s` }}
-              onClick={() => console.log(`${study.title} clicked`)}
               data-testid={`card-case-study-${index}`}
             >
               <div className={`grid md:grid-cols-2 gap-0 ${index % 2 === 1 ? 'md:grid-flow-dense' : ''}`}>
@@ -96,13 +100,14 @@ export default function CaseStudies() {
                     <Button 
                       variant="outline" 
                       className="group/btn"
-                      data-testid={`button-learn-more-${index}`}
+                      data-testid={`button-case-study-${index}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        console.log(`Learn more about ${study.title}`);
+                        setShowLeadForm(true);
                       }}
                     >
-                      Learn More
+                      <Mail className="mr-2 w-4 h-4" />
+                      Send me full case study
                       <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </div>
@@ -113,5 +118,11 @@ export default function CaseStudies() {
         </div>
       </div>
     </section>
+    
+    <LeadFormDialog 
+      open={showLeadForm}
+      onOpenChange={setShowLeadForm}
+    />
+    </>
   );
 }
