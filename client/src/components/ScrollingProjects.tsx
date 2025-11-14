@@ -135,7 +135,7 @@ export default function ScrollingProjects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-primary/20 backdrop-blur-sm text-xs font-medium text-primary border border-primary/30">
+                    <span className="px-3 py-1 rounded-full bg-primary/80 text-xs font-medium text-white border border-primary/90">
                       {project.client}
                     </span>
                   </div>
