@@ -180,12 +180,12 @@ export default function ScrollingProjects() {
           
           <div 
             ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+            className="flex gap-6 overflow-x-auto scrollbar-hide"
           >
             {projects.map((project, index) => (
               <Card
                 key={`${project.id}-${index}`}
-                className="flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[380px] lg:w-[420px] overflow-hidden border-primary/10 hover:border-primary/30 transition-all cursor-pointer group snap-center"
+                className="flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[380px] lg:w-[420px] overflow-hidden border-primary/10 hover:border-primary/30 transition-all cursor-pointer group"
                 onClick={() => setLocation(`/project/${project.id}`)}
                 data-testid={`project-card-${index}`}
               >
