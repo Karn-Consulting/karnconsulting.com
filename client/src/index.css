@@ -252,6 +252,33 @@ html {
     display: none;  /* Chrome, Safari and Opera */
   }
 
+  /* Show scrollbar on desktop for better UX */
+  @media (min-width: 768px) {
+    .md\:scrollbar-visible {
+      -ms-overflow-style: auto;  /* IE and Edge */
+      scrollbar-width: thin;  /* Firefox */
+    }
+    
+    .md\:scrollbar-visible::-webkit-scrollbar {
+      display: block;  /* Chrome, Safari and Opera */
+      height: 8px;
+    }
+    
+    .md\:scrollbar-visible::-webkit-scrollbar-track {
+      background: hsl(var(--muted));
+      border-radius: 4px;
+    }
+    
+    .md\:scrollbar-visible::-webkit-scrollbar-thumb {
+      background: hsl(var(--primary) / 0.5);
+      border-radius: 4px;
+    }
+    
+    .md\:scrollbar-visible::-webkit-scrollbar-thumb:hover {
+      background: hsl(var(--primary) / 0.7);
+    }
+  }
+
   /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {
     @apply hidden;

@@ -115,7 +115,11 @@ export default function ScrollingProjects() {
 
         {/* Unified Horizontal Scroll Container for Desktop and Mobile */}
         <div className="relative px-8">
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+          {/* Gradient fade indicators on edges */}
+          <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 md:scrollbar-visible scrollbar-hide">
             {projects.map((project, index) => (
               <Card
                 key={`${project.id}-${index}`}
