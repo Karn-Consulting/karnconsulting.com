@@ -100,39 +100,61 @@ const projects = [
 export default function ScrollingProjects() {
   const [, setLocation] = useLocation();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    // Auto-scroll every 30 seconds on desktop
-    const autoScroll = () => {
-      const cardWidth = container.querySelector('[data-testid^="project-card"]')?.clientWidth || 0;
-      const gap = 24; // gap-6 = 24px
-      const scrollAmount = cardWidth + gap;
-      const maxScroll = container.scrollWidth - container.clientWidth;
-      
-      // Calculate next scroll position
-      let nextScroll = container.scrollLeft + scrollAmount;
-      
-      // If we've reached the end, loop back to start
-      if (nextScroll >= maxScroll) {
-        container.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        container.scrollTo({ left: nextScroll, behavior: 'smooth' });
-      }
-    };
-
     // Only auto-scroll on desktop (md breakpoint and above)
     const isDesktop = window.innerWidth >= 768;
-    let intervalId: NodeJS.Timeout | null = null;
+    if (!isDesktop) return;
 
-    if (isDesktop) {
-      intervalId = setInterval(autoScroll, 30000); // 30 seconds
-    }
+    // Continuous smooth auto-scroll animation
+    // Complete cycle in 30 seconds
+    const scrollSpeed = 0.5; // pixels per frame (adjust for speed)
+    
+    const animate = () => {
+      if (!container || isPausedRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      // Increment scroll position
+      container.scrollLeft += scrollSpeed;
+      
+      // Loop back to start when reaching the end
+      if (container.scrollLeft >= maxScroll) {
+        container.scrollLeft = 0;
+      }
+      
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationFrameRef.current = requestAnimationFrame(animate);
+
+    // Pause on hover
+    const handleMouseEnter = () => {
+      isPausedRef.current = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPausedRef.current = false;
+    };
+
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      if (intervalId) clearInterval(intervalId);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      container.removeEventListener('mouseenter', handleMouseEnter);
+      container.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -150,7 +172,7 @@ export default function ScrollingProjects() {
           </p>
         </div>
 
-        {/* Auto-scrolling Container for Desktop and Mobile */}
+        {/* Continuous Auto-scrolling Container */}
         <div className="relative px-8">
           {/* Gradient fade indicators on edges */}
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
