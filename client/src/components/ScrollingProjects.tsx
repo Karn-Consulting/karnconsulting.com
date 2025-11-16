@@ -103,6 +103,7 @@ export default function ScrollingProjects() {
   const animationFrameRef = useRef<number | null>(null);
   const isPausedRef = useRef(false);
 
+  // Auto-scroll animation effect
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
