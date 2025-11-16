@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp, Users, Clock, Target } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 import { useLocation } from "wouter";
+import { useEffect, useRef } from "react";
 import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg";
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
 import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.jpg";
@@ -98,6 +99,42 @@ const projects = [
 
 export default function ScrollingProjects() {
   const [, setLocation] = useLocation();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    // Auto-scroll every 30 seconds on desktop
+    const autoScroll = () => {
+      const cardWidth = container.querySelector('[data-testid^="project-card"]')?.clientWidth || 0;
+      const gap = 24; // gap-6 = 24px
+      const scrollAmount = cardWidth + gap;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      
+      // Calculate next scroll position
+      let nextScroll = container.scrollLeft + scrollAmount;
+      
+      // If we've reached the end, loop back to start
+      if (nextScroll >= maxScroll) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        container.scrollTo({ left: nextScroll, behavior: 'smooth' });
+      }
+    };
+
+    // Only auto-scroll on desktop (md breakpoint and above)
+    const isDesktop = window.innerWidth >= 768;
+    let intervalId: NodeJS.Timeout | null = null;
+
+    if (isDesktop) {
+      intervalId = setInterval(autoScroll, 30000); // 30 seconds
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <section className="py-20 md:py-32 relative overflow-hidden" id="case-studies" data-testid="section-projects">
@@ -113,13 +150,16 @@ export default function ScrollingProjects() {
           </p>
         </div>
 
-        {/* Unified Horizontal Scroll Container for Desktop and Mobile */}
+        {/* Auto-scrolling Container for Desktop and Mobile */}
         <div className="relative px-8">
           {/* Gradient fade indicators on edges */}
           <div className="hidden md:block absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="hidden md:block absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
           
-          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-visible">
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+          >
             {projects.map((project, index) => (
               <Card
                 key={`${project.id}-${index}`}
