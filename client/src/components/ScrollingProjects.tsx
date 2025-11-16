@@ -114,7 +114,7 @@ export default function ScrollingProjects() {
 
     // Continuous smooth auto-scroll animation
     // Complete cycle in 30 seconds
-    const scrollSpeed = 0.5; // pixels per frame (adjust for speed)
+    const scrollSpeed = 0.3; // pixels per frame (slower, more comfortable)
     
     const animate = () => {
       if (!container || isPausedRef.current) {
