@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp, CheckCircle2 } from "lucide-react";
 import { useLocation } from "wouter";
 import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg";
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
@@ -15,12 +15,8 @@ const projects = [
     client: "Major International Bank",
     description: "Revolutionized credit risk assessment with ML models, reducing default rates by 42%",
     image: aiDashboard,
-    metrics: {
-      accuracy: "94%",
-      processing: "3x Faster",
-      savings: "$12M Annually",
-      models: "15+ ML Models"
-    },
+    metric1: { icon: "check", label: "94% Accuracy" },
+    metric2: { icon: "trending", label: "3x Faster Processing" },
     tags: ["Machine Learning", "Risk Management", "FinTech"]
   },
   {
@@ -29,12 +25,8 @@ const projects = [
     client: "Leading Retail Chain",
     description: "Deployed self-governing systems for inventory optimization across 500+ stores",
     image: automation,
-    metrics: {
-      accuracy: "89%",
-      reduction: "35% Less Waste",
-      savings: "$8M Saved",
-      stores: "500+ Locations"
-    },
+    metric1: { icon: "check", label: "89% Accuracy" },
+    metric2: { icon: "trending", label: "35% Less Waste" },
     tags: ["Automation", "Retail", "Supply Chain"]
   },
   {
@@ -43,12 +35,8 @@ const projects = [
     client: "National Healthcare Provider",
     description: "AI-driven patient monitoring and early intervention system saving lives daily",
     image: infrastructure,
-    metrics: {
-      accuracy: "91%",
-      detection: "48hrs Earlier",
-      patients: "100K+ Monitored",
-      reduction: "28% Readmissions"
-    },
+    metric1: { icon: "check", label: "91% Accuracy" },
+    metric2: { icon: "trending", label: "48hrs Earlier Detection" },
     tags: ["Healthcare", "Predictive Analytics", "IoT"]
   },
   {
@@ -57,12 +45,8 @@ const projects = [
     client: "Global Manufacturing Corporation",
     description: "End-to-end AI integration for predictive maintenance and quality control",
     image: dataViz,
-    metrics: {
-      uptime: "99.7%",
-      quality: "45% Defect Reduction",
-      efficiency: "38% Higher Output",
-      savings: "$15M Yearly"
-    },
+    metric1: { icon: "check", label: "99.7% Uptime" },
+    metric2: { icon: "trending", label: "45% Defect Reduction" },
     tags: ["Manufacturing", "IoT", "Quality Control"]
   },
   {
@@ -71,12 +55,8 @@ const projects = [
     client: "Fortune 500 Insurance Company",
     description: "Intelligent document processing and fraud detection system",
     image: mlProcess,
-    metrics: {
-      automation: "85%",
-      speed: "10x Faster",
-      fraud: "62% Fraud Detection",
-      satisfaction: "4.8/5 Rating"
-    },
+    metric1: { icon: "check", label: "85% Automation" },
+    metric2: { icon: "trending", label: "10x Faster Processing" },
     tags: ["Insurance", "NLP", "Fraud Detection"]
   },
   {
@@ -85,12 +65,8 @@ const projects = [
     client: "Leading Telecom Provider",
     description: "Self-healing network infrastructure with predictive outage prevention",
     image: digitalTransform,
-    metrics: {
-      uptime: "99.99%",
-      prediction: "72hrs Advance",
-      reduction: "55% Fewer Outages",
-      coverage: "50M+ Users"
-    },
+    metric1: { icon: "check", label: "99.99% Uptime" },
+    metric2: { icon: "trending", label: "55% Fewer Outages" },
     tags: ["Telecom", "Infrastructure", "Predictive Maintenance"]
   }
 ];
@@ -126,48 +102,75 @@ export default function ScrollingProjects() {
                 {[...projects, ...projects].map((project, index) => (
                   <div
                     key={`${project.id}-${index}`}
-                    className="flex-shrink-0 w-[380px] group cursor-pointer"
+                    className="flex-shrink-0 w-[600px] group cursor-pointer"
                     onClick={() => setLocation(`/case-studies/${project.id}`)}
                   >
-                    <div className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
-                      <div className="relative h-48 overflow-hidden">
+                    {/* Horizontal Card Layout */}
+                    <div className="bg-card/50 border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 h-full flex backdrop-blur-sm">
+                      {/* Left: Image with Client Badge Overlay */}
+                      <div className="relative w-[240px] flex-shrink-0">
                         <img
                           src={project.image}
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-background/20 to-transparent" />
+                        
+                        {/* Client Badge Overlay */}
+                        <div className="absolute top-4 left-4">
+                          <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
+                            {project.client}
+                          </span>
+                        </div>
                       </div>
                       
-                      <div className="p-6 flex-1 flex flex-col">
-                        <div className="text-sm text-muted-foreground mb-2">{project.client}</div>
-                        <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm mb-4 flex-1">
-                          {project.description}
-                        </p>
-                        
-                        <div className="grid grid-cols-2 gap-3 mb-4">
-                          {Object.entries(project.metrics).map(([key, value]) => (
-                            <div key={key} className="text-center p-2 bg-muted/50 rounded">
-                              <div className="text-lg font-bold text-primary">{value}</div>
-                            </div>
-                          ))}
+                      {/* Right: Content */}
+                      <div className="flex-1 p-6 flex flex-col justify-between">
+                        {/* Title and Description */}
+                        <div className="mb-4">
+                          <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                            {project.title}
+                          </h3>
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {project.description}
+                          </p>
                         </div>
                         
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded">
-                              {tag}
-                            </span>
-                          ))}
+                        {/* Two Key Metrics */}
+                        <div className="flex items-center gap-6 mb-4">
+                          <div className="flex items-center gap-2">
+                            {project.metric1.icon === "check" ? (
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                            ) : (
+                              <TrendingUp className="h-4 w-4 text-primary" />
+                            )}
+                            <span className="text-sm font-medium">{project.metric1.label}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            {project.metric2.icon === "check" ? (
+                              <CheckCircle2 className="h-4 w-4 text-primary" />
+                            ) : (
+                              <TrendingUp className="h-4 w-4 text-primary" />
+                            )}
+                            <span className="text-sm font-medium">{project.metric2.label}</span>
+                          </div>
                         </div>
                         
-                        <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                          View Case Study
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
+                        {/* Bottom: Tags and Link */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span key={tag} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
+                            View Case Study
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -175,7 +178,7 @@ export default function ScrollingProjects() {
               </div>
             </div>
 
-            {/* Mobile: Manual scroll */}
+            {/* Mobile: Manual scroll with vertical cards */}
             <div className="md:hidden flex gap-6">
               {projects.map((project) => (
                 <div
@@ -183,7 +186,7 @@ export default function ScrollingProjects() {
                   className="flex-shrink-0 w-[320px] group cursor-pointer"
                   onClick={() => setLocation(`/case-studies/${project.id}`)}
                 >
-                  <div className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
+                  <div className="bg-card/50 border border-border/50 rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 h-full flex flex-col backdrop-blur-sm">
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={project.image}
@@ -191,37 +194,44 @@ export default function ScrollingProjects() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
+                          {project.client}
+                        </span>
+                      </div>
                     </div>
                     
                     <div className="p-6 flex-1 flex flex-col">
-                      <div className="text-sm text-muted-foreground mb-2">{project.client}</div>
-                      <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
                       <p className="text-muted-foreground text-sm mb-4 flex-1">
                         {project.description}
                       </p>
                       
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        {Object.entries(project.metrics).map(([key, value]) => (
-                          <div key={key} className="text-center p-2 bg-muted/50 rounded">
-                            <div className="text-lg font-bold text-primary">{value}</div>
-                          </div>
-                        ))}
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium">{project.metric1.label}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <TrendingUp className="h-4 w-4 text-primary" />
+                          <span className="text-sm font-medium">{project.metric2.label}</span>
+                        </div>
                       </div>
                       
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
-                          <span key={tag} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded">
+                          <span key={tag} className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
                             {tag}
                           </span>
                         ))}
                       </div>
                       
-                      <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                      <div className="flex items-center gap-1 text-primary text-sm font-medium group-hover:gap-2 transition-all">
                         View Case Study
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
                     </div>
                   </div>
                 </div>
