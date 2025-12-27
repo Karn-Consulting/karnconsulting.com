@@ -12,6 +12,7 @@ import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.j
 import dataViz from "@assets/stock_images/futuristic_data_visu_72a9fc1b.jpg";
 import mlProcess from "@assets/stock_images/artificial_intellige_2f43adbb.jpg";
 import digitalTransform from "@assets/stock_images/digital_transformati_b71991f3.jpg";
+import logoImage from "@assets/image_1760332792562.png";
 
 const projectsData: Record<string, {
   title: string;
@@ -206,6 +207,34 @@ export default function ProjectDetail() {
   return (
     <>
     <div className="min-h-screen bg-background">
+      {/* Header with Logo */}
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/10">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+          <div 
+            className="cursor-pointer group"
+            onClick={() => setLocation("/")}
+          >
+            <img 
+              src={logoImage} 
+              alt="Karn Consulting" 
+              className="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+              style={{ 
+                filter: "brightness(1.3) contrast(1.2) drop-shadow(0 0 10px rgba(79, 172, 254, 0.3))"
+              }}
+            />
+          </div>
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="group"
+            onClick={() => setLocation("/")}
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Home
+          </Button>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section className="relative h-[400px] overflow-hidden">
         <img 

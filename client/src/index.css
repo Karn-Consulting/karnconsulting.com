@@ -313,10 +313,10 @@ html {
     animation-play-state: paused;
   }
 
-  /* Faster animation for mobile devices */
+  /* Slower, smoother animation for mobile devices */
   @media (max-width: 768px) {
     .case-studies-scroll-rtl {
-      animation: scroll-rtl 25s linear infinite;
+      animation: scroll-rtl 60s linear infinite;
     }
   }
 

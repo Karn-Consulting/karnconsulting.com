@@ -24,7 +24,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-muted-foreground" data-testid="text-footer-tagline">
-              A Division of <span className="font-semibold text-primary">Karn Corporation</span>
+              A Division of <a href="https://karncorporation.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:text-primary/80 transition-colors cursor-pointer">Karn Corporation</a>
             </p>
             <p className="text-xs text-muted-foreground">
               GST: 03CLWPK4491C1ZX

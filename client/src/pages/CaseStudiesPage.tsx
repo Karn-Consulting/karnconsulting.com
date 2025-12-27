@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, TrendingUp, CheckCircle2, ArrowLeft } from "lucide-react";
@@ -10,6 +10,7 @@ import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.j
 import dataViz from "@assets/stock_images/futuristic_data_visu_72a9fc1b.jpg";
 import mlProcess from "@assets/stock_images/artificial_intellige_2f43adbb.jpg";
 import digitalTransform from "@assets/stock_images/digital_transformati_b71991f3.jpg";
+import logoImage from "@assets/image_1760332792562.png";
 
 const caseStudies = [
   {
@@ -102,10 +103,43 @@ export default function CaseStudiesPage() {
   const [, setLocation] = useLocation();
   const [showLeadForm, setShowLeadForm] = useState(false);
 
+  // Scroll to top when page loads
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
+      {/* Header with Logo */}
+      <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/10">
+        <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
+          <div 
+            className="cursor-pointer group"
+            onClick={() => setLocation("/")}
+          >
+            <img 
+              src={logoImage} 
+              alt="Karn Consulting" 
+              className="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-opacity"
+              style={{ 
+                filter: "brightness(1.3) contrast(1.2) drop-shadow(0 0 10px rgba(79, 172, 254, 0.3))"
+              }}
+            />
+          </div>
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="group"
+            onClick={() => setLocation("/")}
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to Home
+          </Button>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-chart-2/10" />
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 blur-3xl rounded-full" />
@@ -113,15 +147,6 @@ export default function CaseStudiesPage() {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-8">
-          <Button 
-            variant="outline" 
-            className="mb-8 group"
-            onClick={() => setLocation("/")}
-          >
-            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
-          </Button>
-          
           <div className="text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold">
               Our <span className="bg-gradient-to-r from-primary to-chart-2 bg-clip-text text-transparent">Case Studies</span>
