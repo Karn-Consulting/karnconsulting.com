@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, TrendingUp, CheckCircle2, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
+import { LeadFormDialog } from "@/components/LeadFormDialog";
 import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg";
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
 import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.jpg";
@@ -98,6 +100,7 @@ const caseStudies = [
 
 export default function CaseStudiesPage() {
   const [, setLocation] = useLocation();
+  const [showLeadForm, setShowLeadForm] = useState(false);
 
   return (
     <div className="min-h-screen bg-background">
@@ -251,12 +254,7 @@ export default function CaseStudiesPage() {
             <Button 
               size="lg" 
               className="group shadow-xl shadow-primary/20"
-              onClick={() => {
-                setLocation("/");
-                setTimeout(() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
+              onClick={() => setShowLeadForm(true)}
             >
               Schedule a Consultation
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -278,6 +276,9 @@ export default function CaseStudiesPage() {
           © {new Date().getFullYear()} Karn Consulting. All rights reserved.
         </div>
       </footer>
+
+      {/* Lead Form Dialog */}
+      <LeadFormDialog open={showLeadForm} onOpenChange={setShowLeadForm} />
     </div>
   );
 }
