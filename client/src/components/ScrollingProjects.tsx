@@ -102,7 +102,7 @@ export default function ScrollingProjects() {
                 <div
                   key={`${project.id}-${index}`}
                   className="flex-shrink-0 w-[380px] group cursor-pointer"
-                  onClick={() => setLocation(`/case-studies/${project.id}`)}
+                  onClick={() => setLocation(`/project/${project.id}`)}
                 >
                   {/* Vertical Card */}
                   <div className="bg-card/50 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 h-full flex flex-col backdrop-blur-sm hover:-translate-y-2">
@@ -193,7 +193,7 @@ export default function ScrollingProjects() {
           <Button
             size="lg"
             className="group shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all"
-            onClick={() => setLocation("/case-studies")}
+            onClick={() => setLocation("/")}
           >
             View All Case Studies
             <TrendingUp className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
