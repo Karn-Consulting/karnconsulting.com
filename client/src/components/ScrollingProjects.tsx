@@ -193,7 +193,12 @@ export default function ScrollingProjects() {
           <Button
             size="lg"
             className="group shadow-xl shadow-primary/20 hover:shadow-2xl hover:shadow-primary/30 transition-all"
-            onClick={() => setLocation("/")}
+            onClick={() => {
+              setLocation("/");
+              setTimeout(() => {
+                document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' });
+              }, 100);
+            }}
           >
             View All Case Studies
             <TrendingUp className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
