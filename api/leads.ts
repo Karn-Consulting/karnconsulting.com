@@ -34,7 +34,7 @@ async function sendEmails(lead: any) {
     // Send notification to support team
     const notificationPromise = resend.emails.send({
       from: 'Lead Notifications <leads@karnconsulting.co>',
-      to: ['support@karnconsulting.co'],
+      to: ['prateek.karn@karnconsulting.co'],
       subject: `New Lead: ${lead.companyName} - ${lead.name}`,
       html: getInternalNotificationHTML(lead),
     });
