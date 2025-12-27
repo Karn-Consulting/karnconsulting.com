@@ -5,9 +5,8 @@ import aiDashboard from "@assets/stock_images/modern_business_prof_66fe6da9.jpg"
 import automation from "@assets/stock_images/automated_workflow_d_d41ad38e.jpg";
 import infrastructure from "@assets/stock_images/futuristic_technolog_2c39519e.jpg";
 import dataViz from "@assets/stock_images/futuristic_data_visu_72a9fc1b.jpg";
-import mlProcess from "@assets/stock_images/artificial_intellige_2f43adbb.jpg";
-import digitalTransform from "@assets/stock_images/digital_transformati_b71991f3.jpg";
 
+// Display only 4 featured case studies
 const projects = [
   {
     id: "major-bank-ai",
@@ -48,26 +47,6 @@ const projects = [
     metric1: { icon: "check", label: "99.7% Uptime" },
     metric2: { icon: "trending", label: "45% Defect Reduction" },
     tags: ["Manufacturing", "IoT", "Quality Control"]
-  },
-  {
-    id: "insurance-claims",
-    title: "Automated Claims Processing",
-    client: "Fortune 500 Insurance Company",
-    description: "Intelligent document processing and fraud detection system",
-    image: mlProcess,
-    metric1: { icon: "check", label: "85% Automation" },
-    metric2: { icon: "trending", label: "10x Faster Processing" },
-    tags: ["Insurance", "NLP", "Fraud Detection"]
-  },
-  {
-    id: "telecom-network",
-    title: "Network Intelligence Platform",
-    client: "Leading Telecom Provider",
-    description: "Self-healing network infrastructure with predictive outage prevention",
-    image: digitalTransform,
-    metric1: { icon: "check", label: "99.99% Uptime" },
-    metric2: { icon: "trending", label: "55% Fewer Outages" },
-    tags: ["Telecom", "Infrastructure", "Predictive Maintenance"]
   }
 ];
 
@@ -88,103 +67,95 @@ export default function ScrollingProjects() {
           </p>
         </div>
 
-        {/* Horizontal Auto-Scrolling Container */}
-        <div className="relative px-8">
-          {/* Gradient fade indicators on edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-          
-          <div className="overflow-hidden">
-            {/* Auto-scrolling animation wrapper - Right to Left */}
-            <div className="case-studies-scroll-rtl flex gap-8">
-              {/* Duplicate the cards twice for seamless infinite loop */}
-              {[...projects, ...projects].map((project, index) => (
-                <div
-                  key={`${project.id}-${index}`}
-                  className="flex-shrink-0 w-[380px] group cursor-pointer"
-                  onClick={() => setLocation(`/project/${project.id}`)}
-                >
-                  {/* Vertical Card */}
-                  <div className="bg-card/50 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 h-full flex flex-col backdrop-blur-sm hover:-translate-y-2">
+        {/* 4 Cards Grid Layout */}
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="group cursor-pointer"
+                onClick={() => setLocation(`/project/${project.id}`)}
+              >
+                {/* Card */}
+                <div className="bg-card/50 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 h-full flex flex-col backdrop-blur-sm hover:-translate-y-2">
+                  
+                  {/* Image Section */}
+                  <div className="relative h-48 md:h-56 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
                     
-                    {/* Image Section - Full Width at Top */}
-                    <div className="relative h-56 overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent" />
-                      
-                      {/* Client Badge Overlay - Top Left */}
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-block px-3 py-1.5 bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs font-semibold rounded-full shadow-lg">
-                          {project.client}
-                        </span>
+                    {/* Client Badge Overlay */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-block px-3 py-1.5 bg-primary/90 backdrop-blur-sm text-primary-foreground text-xs font-semibold rounded-full shadow-lg">
+                        {project.client}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6 flex-1 flex flex-col space-y-4">
+                    
+                    {/* Title */}
+                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors leading-tight">
+                      {project.title}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+                      {project.description}
+                    </p>
+                    
+                    {/* Metrics */}
+                    <div className="flex items-center gap-4 md:gap-6 py-3 flex-wrap">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          {project.metric1.icon === "check" ? (
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                          ) : (
+                            <TrendingUp className="h-4 w-4 text-primary" />
+                          )}
+                        </div>
+                        <span className="text-sm font-semibold">{project.metric1.label}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          {project.metric2.icon === "check" ? (
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                          ) : (
+                            <TrendingUp className="h-4 w-4 text-primary" />
+                          )}
+                        </div>
+                        <span className="text-sm font-semibold">{project.metric2.label}</span>
                       </div>
                     </div>
                     
-                    {/* Content Section - Vertical Stack */}
-                    <div className="p-6 flex-1 flex flex-col space-y-4">
-                      
-                      {/* Title */}
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors leading-tight">
-                        {project.title}
-                      </h3>
-                      
-                      {/* Description */}
-                      <p className="text-muted-foreground text-sm leading-relaxed flex-1">
-                        {project.description}
-                      </p>
-                      
-                      {/* Metrics - Horizontal Row with Icons */}
-                      <div className="flex items-center gap-6 py-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                            {project.metric1.icon === "check" ? (
-                              <CheckCircle2 className="h-4 w-4 text-primary" />
-                            ) : (
-                              <TrendingUp className="h-4 w-4 text-primary" />
-                            )}
-                          </div>
-                          <span className="text-sm font-semibold">{project.metric1.label}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                            {project.metric2.icon === "check" ? (
-                              <CheckCircle2 className="h-4 w-4 text-primary" />
-                            ) : (
-                              <TrendingUp className="h-4 w-4 text-primary" />
-                            )}
-                          </div>
-                          <span className="text-sm font-semibold">{project.metric2.label}</span>
-                        </div>
-                      </div>
-                      
-                      {/* Tags - Pill-shaped Chips */}
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span 
-                            key={tag} 
-                            className="text-xs px-3 py-1.5 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary/20 transition-colors"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      {/* CTA Button - Full Width */}
-                      <div className="pt-2">
-                        <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary rounded-xl font-semibold text-sm transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
-                          View Case Study
-                          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </div>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span 
+                          key={tag} 
+                          className="text-xs px-3 py-1.5 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary/20 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* CTA Button */}
+                    <div className="pt-2">
+                      <button className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary hover:text-primary-foreground text-primary rounded-xl font-semibold text-sm transition-all duration-300 group-hover:shadow-lg group-hover:shadow-primary/20">
+                        View Case Study
+                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
