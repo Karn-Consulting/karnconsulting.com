@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import ProjectDetail from "@/pages/ProjectDetail";
+import CaseStudiesPage from "@/pages/CaseStudiesPage";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
 import LeadsAdmin from "@/pages/LeadsAdmin";
@@ -14,6 +15,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/case-studies" component={CaseStudiesPage} />
       <Route path="/project/:id" component={ProjectDetail} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/terms-conditions" component={TermsConditions} />
