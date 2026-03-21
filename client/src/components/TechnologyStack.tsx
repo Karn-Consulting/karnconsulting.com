@@ -1,4 +1,5 @@
-import { SiTensorflow, SiPytorch, SiAmazonwebservices, SiKubernetes, SiDocker } from "react-icons/si";
+import { SiTensorflow, SiPytorch, SiKubernetes, SiDocker } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 import { Bot, BarChart3, Brain } from "lucide-react";
 
 const technologies = [
@@ -7,7 +8,7 @@ const technologies = [
   { icon: Brain, name: "Machine Learning", color: "text-green-500" },
   { icon: Bot, name: "Agentic AI", color: "text-purple-500" },
   { icon: BarChart3, name: "MarTech", color: "text-pink-500" },
-  { icon: SiAmazonwebservices, name: "AWS", color: "text-orange-400" },
+  { icon: FaAws, name: "AWS", color: "text-orange-400" },
   { icon: SiKubernetes, name: "Kubernetes", color: "text-blue-600" },
   { icon: SiDocker, name: "Docker", color: "text-blue-400" },
 ];
