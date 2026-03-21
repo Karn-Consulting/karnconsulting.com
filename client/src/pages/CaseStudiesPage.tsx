@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import SEO from "@/components/SEO";
 import { ArrowRight, TrendingUp, CheckCircle2, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import { LeadFormDialog } from "@/components/LeadFormDialog";
@@ -110,6 +111,11 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Case Studies - AI & ML Success Stories"
+        description="Explore how Karn Consulting has transformed businesses with AI-powered risk assessment, marketing automation, data pipelines, and enterprise AI solutions."
+        canonical="/case-studies"
+      />
       {/* Header with Logo */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-primary/10">
         <div className="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
