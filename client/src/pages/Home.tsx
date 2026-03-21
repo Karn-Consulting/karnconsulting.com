@@ -20,25 +20,25 @@ export default function Home() {
           "@graph": [
             {
               "@type": "Organization",
-              "@id": "https://karnconsulting.co/#organization",
+              "@id": "https://www.karnconsulting.co/#organization",
               "name": "Karn Consulting",
-              "url": "https://karnconsulting.co",
-              "logo": { "@type": "ImageObject", "url": "https://karnconsulting.co/og-image.png" },
+              "url": "https://www.karnconsulting.co",
+              "logo": { "@type": "ImageObject", "url": "https://www.karnconsulting.co/og-image.png" },
               "description": "AI, ML, and Self-Governing Intelligent Solutions for business transformation.",
               "founder": { "@type": "Person", "name": "Prateek Karn" },
               "sameAs": ["https://www.linkedin.com/company/karnconsulting/"]
             },
             {
               "@type": "WebSite",
-              "@id": "https://karnconsulting.co/#website",
+              "@id": "https://www.karnconsulting.co/#website",
               "name": "Karn Consulting",
-              "url": "https://karnconsulting.co",
-              "publisher": { "@id": "https://karnconsulting.co/#organization" }
+              "url": "https://www.karnconsulting.co",
+              "publisher": { "@id": "https://www.karnconsulting.co/#organization" }
             },
             {
               "@type": "ProfessionalService",
               "name": "Karn Consulting - AI & ML Solutions",
-              "url": "https://karnconsulting.co",
+              "url": "https://www.karnconsulting.co",
               "description": "Custom AI agents, marketing automation, data pipelines, and enterprise AI transformation.",
               "priceRange": "$$$$",
               "areaServed": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "India" }],

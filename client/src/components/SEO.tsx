@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Karn Consulting";
-const BASE_URL = "https://karnconsulting.co";
+const BASE_URL = "https://www.karnconsulting.co";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 export default function SEO({
