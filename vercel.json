@@ -3,10 +3,17 @@
   "outputDirectory": "dist/public",
   "framework": "vite",
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/case-studies", "destination": "/index.html" },
+    { "source": "/project/major-bank-ai", "destination": "/index.html" },
+    { "source": "/project/retail-automation", "destination": "/index.html" },
+    { "source": "/project/healthcare-prediction", "destination": "/index.html" },
+    { "source": "/project/manufacturing-optimization", "destination": "/index.html" },
+    { "source": "/project/insurance-claims", "destination": "/index.html" },
+    { "source": "/project/telecom-network", "destination": "/index.html" },
+    { "source": "/privacy-policy", "destination": "/index.html" },
+    { "source": "/terms-conditions", "destination": "/index.html" },
+    { "source": "/admin/leads", "destination": "/index.html" }
   ],
   "headers": [
     {
