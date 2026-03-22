@@ -42,10 +42,10 @@ export default function HeroSection() {
         <div className="space-y-8 animate-fade-up">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
             <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-              Intelligent Solutions
+              AI &amp; ML Solutions
             </span>
             <br />
-            <span className="text-foreground">for Tomorrow</span>
+            <span className="text-foreground">for Business Transformation</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl" data-testid="text-hero-description">

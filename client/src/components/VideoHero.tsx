@@ -119,10 +119,10 @@ export default function VideoHero() {
         <div className="space-y-8 animate-fade-up max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight mt-12">
             <span className="bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
-              Intelligent Solutions
+              AI &amp; ML Solutions
             </span>
             <br />
-            <span className="text-foreground">for Tomorrow's Challenges</span>
+            <span className="text-foreground">for Business Transformation</span>
           </h1>
           
           <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-2xl mx-auto" data-testid="text-hero-description">
